@@ -17,12 +17,14 @@
 # remove timing
 # remove blank lines
 # remove tags
+# replace new lines with spaces
 sed -r -e 's/^\xef\xbb\xbf//' \
     -e 's/\r//' \
     -e 's/^[0-9]*$//' \
     -e '/^[0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3} --> [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}$/d' \
     -e 's/^\s*$//' \
-    -e '/^$/d;s/<[^>]*>//g' "$1"
+    -e '/^$/d;s/<[^>]*>//g' "$1" | \
+    tr '\n' ' '
 
 exit 0
 
